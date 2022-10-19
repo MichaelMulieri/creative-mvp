@@ -1,0 +1,21 @@
+{
+  "name": "creative-mvp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm --prefix ./client run start",
+    "client-test": "npm --prefix ./client run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelMulieri/creative-mvp.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MichaelMulieri/creative-mvp/issues"
+  },
+  "homepage": "https://github.com/MichaelMulieri/creative-mvp#readme"
+}
