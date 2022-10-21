@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/MichaelMulieri/creative-mvp/issues"
   },
-  "homepage": "https://github.com/MichaelMulieri/creative-mvp#readme"
+  "homepage": "https://github.com/MichaelMulieri/creative-mvp#readme",
+  "dependencies": {
+    "lodash.shuffle": "^4.2.0",
+    "react-router-dom": "^6.4.2"
+  }
 }
