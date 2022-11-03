@@ -8,8 +8,16 @@ function App() {
   return (
     <div>
       <header>
-        <Link to="/">Homepage</Link>
-        <Link to="/wordladder">Word Ladder</Link>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Homepage</Link>
+            </li>
+            <li>
+              <Link to="/wordladder">Word Ladder</Link>
+            </li>
+          </ul>
+        </nav>
       </header>
       <main className="App">
         <Routes>

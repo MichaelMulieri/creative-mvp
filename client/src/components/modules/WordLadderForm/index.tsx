@@ -3,19 +3,16 @@ import WordColumn from "../WordColumn";
 import { scrambleMap, loadLocalData, saveLocalData } from "../../../utils";
 import "./index.css";
 
-const WordLadderForm = ({ wordAmount }) => {
+const WordLadderForm = ({ wordAmount, setScrambledWords }) => {
   const [verbs, setVerbs] = useState(
     loadLocalData("verbs") || Array(wordAmount).fill("")
   );
   const [nouns, setNouns] = useState(
     loadLocalData("nouns") || Array(wordAmount).fill("")
   );
-  const [scrambledWords, setScrambledWords] = useState(
-    loadLocalData("scrambledWords") || []
-  );
 
   const handleVerbChange = (newValue, index) => {
-    const updatedVerbs = [...verbs];
+    const updatedVerbs: string[] = [...verbs];
     updatedVerbs[index] = newValue;
     saveLocalData("verbs", updatedVerbs);
     setVerbs(updatedVerbs);
@@ -35,6 +32,16 @@ const WordLadderForm = ({ wordAmount }) => {
     setScrambledWords(scrambledWords);
   };
 
+  const handleReset = (event) => {
+    event.preventDefault();
+    setVerbs(Array(wordAmount).fill(""));
+    setNouns(Array(wordAmount).fill(""));
+    setScrambledWords([]);
+    saveLocalData("verbs", null);
+    saveLocalData("nouns", null);
+    saveLocalData("scrambledWords", null);
+  };
+
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
@@ -45,17 +52,8 @@ const WordLadderForm = ({ wordAmount }) => {
           <WordColumn words={nouns} handleWordChange={handleNounChange} />
         </div>
         <button>Pair Words</button>
+        <button onClick={handleReset}>Reset</button>
       </form>
-      {scrambledWords.length > 0 && (
-        <div>
-          <h1>Scrambled Word Pairs</h1>
-          {scrambledWords.map((wordPair, index) => (
-            <div key={index}>
-              <span>{wordPair[0]}</span>: <span>{wordPair[1]}</span>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

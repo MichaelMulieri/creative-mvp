@@ -1,12 +1,18 @@
 import React from "react";
 import "./index.css";
+import type { Words } from "../../../types";
 
-const WordColumn = ({ words, handleWordChange }) => (
+interface WordColumnProps {
+  words: Words;
+  handleWordChange: (string, number) => void;
+}
+
+const WordColumn: React.FC<WordColumnProps> = ({ words, handleWordChange }) => (
   <React.Fragment>
     {words.map((word, index) => (
       <input
         key={index}
-        value={words[index]}
+        value={word}
         onChange={(event) => handleWordChange(event.target.value, index)}
       />
     ))}
