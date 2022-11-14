@@ -1,14 +1,14 @@
-import React from "react";
+import { Fragment } from "react";
 import "./index.css";
 import type { Words } from "../../../types";
 
 interface WordColumnProps {
   words: Words;
-  handleWordChange: (string, number) => void;
+  handleWordChange: (newValue: string, index: number) => void;
 }
 
-const WordColumn: React.FC<WordColumnProps> = ({ words, handleWordChange }) => (
-  <React.Fragment>
+const WordColumn = ({ words, handleWordChange }: WordColumnProps) => (
+  <Fragment>
     {words.map((word, index) => (
       <input
         key={index}
@@ -16,7 +16,7 @@ const WordColumn: React.FC<WordColumnProps> = ({ words, handleWordChange }) => (
         onChange={(event) => handleWordChange(event.target.value, index)}
       />
     ))}
-  </React.Fragment>
+  </Fragment>
 );
 
 export default WordColumn;

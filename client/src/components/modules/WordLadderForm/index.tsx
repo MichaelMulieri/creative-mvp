@@ -1,38 +1,47 @@
-import React, { useState } from "react";
+import { useState, FormEvent, KeyboardEvent, MouseEvent } from "react";
 import WordColumn from "../WordColumn";
 import { scrambleMap, loadLocalData, saveLocalData } from "../../../utils";
 import "./index.css";
+import type { Words, ScrambledWords } from "../../../types";
 
-const WordLadderForm = ({ wordAmount, setScrambledWords }) => {
+interface WordLadderFormProps {
+  wordAmount: number;
+  setScrambledWords: (scrambledWords: ScrambledWords) => void;
+}
+
+const WordLadderForm = ({
+  wordAmount,
+  setScrambledWords,
+}: WordLadderFormProps) => {
   const [verbs, setVerbs] = useState(
-    loadLocalData("verbs") || Array(wordAmount).fill("")
+    (loadLocalData("verbs") as Words) || Array(wordAmount).fill("")
   );
   const [nouns, setNouns] = useState(
-    loadLocalData("nouns") || Array(wordAmount).fill("")
+    (loadLocalData("nouns") as Words) || Array(wordAmount).fill("")
   );
 
-  const handleVerbChange = (newValue, index) => {
-    const updatedVerbs: string[] = [...verbs];
+  const handleVerbChange = (newValue: string, index: number) => {
+    const updatedVerbs = [...verbs];
     updatedVerbs[index] = newValue;
     saveLocalData("verbs", updatedVerbs);
     setVerbs(updatedVerbs);
   };
 
-  const handleNounChange = (newValue, index) => {
+  const handleNounChange = (newValue: string, index: number) => {
     const updatedNouns = [...nouns];
     updatedNouns[index] = newValue;
     saveLocalData("nouns", updatedNouns);
     setNouns(updatedNouns);
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
     const scrambledWords = scrambleMap(verbs, nouns);
     saveLocalData("scrambledWords", scrambledWords);
     setScrambledWords(scrambledWords);
   };
 
-  const handleReset = (event) => {
+  const handleReset = (event: MouseEvent | KeyboardEvent) => {
     event.preventDefault();
     setVerbs(Array(wordAmount).fill(""));
     setNouns(Array(wordAmount).fill(""));
