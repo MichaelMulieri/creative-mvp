@@ -1,15 +1,14 @@
-import React from "react";
 import type { ScrambledWords } from "../../../types";
 
 interface ScrambledWordPairsProps {
-  scrambledWords: ScrambledWords;
+  theScrambledWords: ScrambledWords;
 }
 
-const ScrambledWordPairs = ({ scrambledWords }: ScrambledWordPairsProps) => {
-  return scrambledWords.length > 0 ? (
+const ScrambledWordPairs = ({ theScrambledWords }: ScrambledWordPairsProps) => {
+  return theScrambledWords.length > 0 ? (
     <div>
       <h1>Scrambled Word Pairs</h1>
-      {scrambledWords.map((wordPair, index) => (
+      {theScrambledWords.map((wordPair, index) => (
         <div key={index}>
           <span>{wordPair[0]}</span>: <span>{wordPair[1]}</span>
         </div>
