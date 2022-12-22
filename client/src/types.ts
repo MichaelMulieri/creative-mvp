@@ -1,11 +1,11 @@
-export type Words = string[]
-export type ScrambledWords = [string, string][]
+export type Words = string[];
+export type ScrambledWords = [string, string][];
 
-export type LocalStorageKey = "verbs" | "nouns" | "scrambledWords"
+export type LocalStorageKey = "verbs" | "nouns" | "scrambledWords";
 
-export type LocalStorageItem = Words | ScrambledWords | null
+export type LocalStorageItem = Words | ScrambledWords | null;
 export interface LocalStorageData {
-    verbs: Words,
-    nouns: Words,
-    scrambledWords: ScrambledWords
+  verbs: Words;
+  nouns: Words;
+  scrambledWords: ScrambledWords;
 }

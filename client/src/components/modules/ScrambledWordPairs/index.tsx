@@ -1,3 +1,5 @@
+import { Box, Typography, Card, TextField } from "@mui/material";
+
 import type { ScrambledWords } from "../../../types";
 
 interface ScrambledWordPairsProps {
@@ -6,14 +8,22 @@ interface ScrambledWordPairsProps {
 
 const ScrambledWordPairs = ({ theScrambledWords }: ScrambledWordPairsProps) => {
   return theScrambledWords.length > 0 ? (
-    <div>
-      <h1>Scrambled Word Pairs</h1>
+    <Box>
+      <Typography variant="h4" component="h2">
+        Scrambled Word Pairs
+      </Typography>
       {theScrambledWords.map((wordPair, index) => (
-        <div key={index}>
-          <span>{wordPair[0]}</span>: <span>{wordPair[1]}</span>
-        </div>
+        <Card sx={{ my: "1rem", padding: "1rem" }}>
+          <TextField
+            variant="filled"
+            size="small"
+            key={index}
+            fullWidth
+            label={`${wordPair[0]}: ${wordPair[1]}`}
+          />
+        </Card>
       ))}
-    </div>
+    </Box>
   ) : null;
 };
 

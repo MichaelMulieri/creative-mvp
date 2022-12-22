@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/MichaelMulieri/creative-mvp#readme",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.0",
     "lodash.shuffle": "^4.2.0",
     "react-router-dom": "^6.4.2"
   }

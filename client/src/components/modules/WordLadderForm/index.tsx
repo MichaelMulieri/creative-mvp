@@ -1,8 +1,8 @@
 import { FormEvent, KeyboardEvent, MouseEvent } from "react";
+import { Box, Stack, Button } from "@mui/material";
 import WordColumn from "../WordColumn";
 import { scrambleMap } from "../../../utils";
 import useLocalStorageState from "../../../hooks/useLocalStorageState";
-import "./index.css";
 import type { ScrambledWords } from "../../../types";
 
 interface WordLadderFormProps {
@@ -49,18 +49,20 @@ const WordLadderForm = ({
   };
 
   return (
-    <div>
+    <Box>
       <form onSubmit={handleFormSubmit}>
-        <div className="leftCol">
+        <Stack direction="row" spacing={3}>
           <WordColumn words={verbs} handleWordChange={handleVerbChange} />
-        </div>
-        <div className="rightCol">
           <WordColumn words={nouns} handleWordChange={handleNounChange} />
-        </div>
-        <button>Pair Words</button>
-        <button onClick={handleReset}>Reset</button>
+        </Stack>
+        <Button variant="outlined" sx={{ marginRight: "1rem" }} type="submit">
+          Pair Words
+        </Button>
+        <Button variant="outlined" onClick={handleReset}>
+          Reset
+        </Button>
       </form>
-    </div>
+    </Box>
   );
 };
 
