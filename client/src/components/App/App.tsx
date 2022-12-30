@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import {
   Container,
   CssBaseline,
@@ -12,6 +12,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import HomePage from "../pages/HomePage";
 import WordLadderPage from "../pages/WordLadderPage";
 import ContactPage from "../pages/ContactPage";
+import AppShell from "../modules/AppShell";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -29,19 +30,9 @@ function App() {
       <CssBaseline />
       <Container>
         <header>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Homepage</Link>
-              </li>
-              <li>
-                <Link to="/wordladder">Word Ladder</Link>
-              </li>
-              <li>
-                <Link to="/contactpage">Contact</Link>
-              </li>
-            </ul>
-          </nav>
+          <AppShell />
+        </header>
+        <main>
           <FormGroup>
             <FormControlLabel
               control={
@@ -54,8 +45,6 @@ function App() {
               label={isDarkMode ? "Light mode" : "Dark mode"}
             />
           </FormGroup>
-        </header>
-        <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/wordladder" element={<WordLadderPage />} />
