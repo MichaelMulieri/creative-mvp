@@ -4,23 +4,45 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  styled,
 } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 
+const drawerWidth = 240;
+
+const StyledAppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<{ open: boolean }>(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
 interface AppBarProps {
   handleDrawerOpen: () => void;
+  open: boolean;
 }
 
-const AppBar = ({ handleDrawerOpen }: AppBarProps) => {
+const AppBar = ({ handleDrawerOpen, open }: AppBarProps) => {
   return (
-    <MuiAppBar position="fixed">
+    <StyledAppBar position="fixed" open={open}>
       <Toolbar>
         <IconButton
           size="large"
           edge="start"
           color="inherit"
           aria-label="menu"
-          sx={{ mr: 2 }}
+          sx={{ marginRight: 5, ...(open && { display: "none" }) }}
           onClick={handleDrawerOpen}
         >
           <MenuIcon />
@@ -29,7 +51,7 @@ const AppBar = ({ handleDrawerOpen }: AppBarProps) => {
           Creative MVP
         </Typography>
       </Toolbar>
-    </MuiAppBar>
+    </StyledAppBar>
   );
 };
 

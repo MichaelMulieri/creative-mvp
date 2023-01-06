@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Box } from "@mui/material";
 import AppBar from "../AppBar";
 import AppNav from "../AppNav";
 
@@ -11,10 +12,10 @@ const AppShell = () => {
     setIsOpen(false);
   };
   return (
-    <div className="nav">
-      <AppBar handleDrawerOpen={handleDrawerOpen} />
+    <Box sx={{ display: "flex" }}>
+      <AppBar handleDrawerOpen={handleDrawerOpen} open={isOpen} />
       <AppNav handleDrawerClose={handleDrawerClose} open={isOpen} />
-    </div>
+    </Box>
   );
 };
 

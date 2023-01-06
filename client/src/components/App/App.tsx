@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import {
   Container,
   CssBaseline,
+  Box,
   useMediaQuery,
   Switch,
   FormGroup,
@@ -13,6 +14,7 @@ import HomePage from "../pages/HomePage";
 import WordLadderPage from "../pages/WordLadderPage";
 import ContactPage from "../pages/ContactPage";
 import AppShell from "../modules/AppShell";
+import { DrawerHeader } from "../modules/AppNav";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -28,11 +30,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container>
-        <header>
-          <AppShell />
-        </header>
-        <main>
+      <Container sx={{ display: "flex" }}>
+        <AppShell />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
           <FormGroup>
             <FormControlLabel
               control={
@@ -53,7 +54,7 @@ function App() {
               element={<ContactPage cta="Subscribe Now" />}
             />
           </Routes>
-        </main>
+        </Box>
         <footer>footer placeholder</footer>
       </Container>
     </ThemeProvider>
