@@ -1,3 +1,3 @@
-const SettingsPage = () => <h1>Settings Page Place Holder</h1>;
+const SettingsPage = () => <div>Settings Page Place Holder</div>;
 
 export default SettingsPage;
