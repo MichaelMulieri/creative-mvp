@@ -12,6 +12,7 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import HomePage from "../pages/HomePage";
 import WordLadderPage from "../pages/WordLadderPage";
+import SettingsPage from "../pages/SettingsPage";
 import AppShell from "../modules/AppShell";
 import { DrawerHeader } from "../modules/AppNav";
 
@@ -48,6 +49,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/wordladder" element={<WordLadderPage />} />
+            <Route path="/settingspage" element={<SettingsPage />} />
           </Routes>
         </Box>
         <footer>footer placeholder</footer>
