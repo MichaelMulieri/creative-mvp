@@ -53,16 +53,13 @@ function App() {
           </FormGroup>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/projects" element={<ProjectListPage />} />
+            <Route path="/project" element={<ProjectPage />} />
+            <Route path="/wordladders" element={<WordLadderListPage />} />
             <Route path="/wordladder" element={<WordLadderPage />} />
-            <Route path="/settingspage" element={<SettingsPage />} />
-            <Route path="/projectlistpage" element={<ProjectListPage />} />
-            <Route path="/projecpage" element={<ProjectPage />} />
-            <Route path="/streamspage" element={<StreamsPage />} />
-            <Route path="/ideaspage" element={<IdeasPage />} />
-            <Route
-              path="/wordladderlistpage"
-              element={<WordLadderListPage />}
-            />
+            <Route path="/streams" element={<StreamsPage />} />
+            <Route path="/ideas" element={<IdeasPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </Box>
         <footer>footer placeholder</footer>

@@ -81,18 +81,12 @@ const AppNav = ({ handleDrawerClose, open }: AppNavProps) => {
       <Divider />
       <List>
         {[
-          "WordLadder",
-          "Starred",
-          "Send email",
-          "Drafts",
-          "Settings",
-          "Project List",
-          "Project",
-          "Streams",
-          "Ideas",
-          "Word Ladder List",
-        ].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+          { label: "Projects", link: "projects" },
+          { label: "Word Ladders", link: "wordladders" },
+          { label: "Streams", link: "streams" },
+          { label: "Ideas", link: "ideas" },
+        ].map((link, index) => (
+          <ListItem key={link.link} disablePadding sx={{ display: "block" }}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -110,7 +104,7 @@ const AppNav = ({ handleDrawerClose, open }: AppNavProps) => {
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
               </ListItemIcon>
               <ListItemText sx={{ opacity: open ? 1 : 0 }}>
-                <Link to={text}>{text}</Link>
+                <Link to={link.link}>{link.label}</Link>
               </ListItemText>
             </ListItemButton>
           </ListItem>
@@ -118,8 +112,8 @@ const AppNav = ({ handleDrawerClose, open }: AppNavProps) => {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {[{ label: "Settings", link: "settings" }].map((link, index) => (
+          <ListItem key={link.link} disablePadding sx={{ display: "block" }}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -136,7 +130,9 @@ const AppNav = ({ handleDrawerClose, open }: AppNavProps) => {
               >
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                <Link to={link.link}>{link.label}</Link>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
         ))}
