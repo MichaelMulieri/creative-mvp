@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import {
   Container,
   CssBaseline,
+  Box,
   useMediaQuery,
   Switch,
   FormGroup,
@@ -11,7 +12,14 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import HomePage from "../pages/HomePage";
 import WordLadderPage from "../pages/WordLadderPage";
-import ContactPage from "../pages/ContactPage";
+import SettingsPage from "../pages/SettingsPage";
+import ProjectListPage from "../pages/ProjectListPage";
+import ProjectPage from "../pages/ProjectPage";
+import StreamsPage from "../pages/StreamsPage";
+import IdeasPage from "../pages/IdeasPage";
+import WordLadderListPage from "../pages/WordLadderListPage";
+import AppShell from "../modules/AppShell";
+import { DrawerHeader } from "../modules/AppNav";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -27,21 +35,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container>
-        <header>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Homepage</Link>
-              </li>
-              <li>
-                <Link to="/wordladder">Word Ladder</Link>
-              </li>
-              <li>
-                <Link to="/contactpage">Contact</Link>
-              </li>
-            </ul>
-          </nav>
+      <Container sx={{ display: "flex" }}>
+        <AppShell />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
           <FormGroup>
             <FormControlLabel
               control={
@@ -54,17 +51,17 @@ function App() {
               label={isDarkMode ? "Light mode" : "Dark mode"}
             />
           </FormGroup>
-        </header>
-        <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/projects" element={<ProjectListPage />} />
+            <Route path="/project" element={<ProjectPage />} />
+            <Route path="/wordladders" element={<WordLadderListPage />} />
             <Route path="/wordladder" element={<WordLadderPage />} />
-            <Route
-              path="/contactpage"
-              element={<ContactPage cta="Subscribe Now" />}
-            />
+            <Route path="/streams" element={<StreamsPage />} />
+            <Route path="/ideas" element={<IdeasPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
-        </main>
+        </Box>
         <footer>footer placeholder</footer>
       </Container>
     </ThemeProvider>
