@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import {
   Container,
@@ -20,6 +20,7 @@ import IdeasPage from "../pages/IdeasPage";
 import WordLadderListPage from "../pages/WordLadderListPage";
 import AppShell from "../modules/AppShell";
 import { DrawerHeader } from "../modules/AppNav";
+import { getAllDocuments, setWordLadder } from "../../firebase";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -31,6 +32,14 @@ function App() {
       mode: isDarkMode ? "dark" : "light",
     },
   });
+
+  useEffect(() => {
+    getAllDocuments().then((documents) => {
+      console.log("documents", documents);
+    });
+
+    setWordLadder();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

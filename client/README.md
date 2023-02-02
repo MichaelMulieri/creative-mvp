@@ -87,3 +87,94 @@ value: {
 -- user can generate a random profession/type of person (verbs)
 -- user can generate a random environment/location (nouns)
 --
+
+# Data Structure
+
+## option 1
+
+```js
+// 1 giant collection, 1 document per user
+
+{
+  projects: [],
+  wordLadders: [],
+  ideas: [],
+  settings: {}
+}
+```
+
+## option 2
+
+```js
+// one possible data organization: multiple collections mapping somewhat to how the SQL would be structured
+// e.g. 1 collection for users, 1 collection for projects, etc
+
+// users, projects, word ladders, ideas, streams
+
+// users
+{
+  id: string,
+  firstName: string,
+  email: string,
+  settings: {
+    colorTheme: string,
+  }
+  projects: [id1, id2, etc]
+}
+
+// projects
+{
+  id,
+  name,
+}
+
+// the database organization we'll use is one collection of users with
+// all data for each users
+
+// users
+{
+  id: string
+  password: string
+  firstName: string
+  lastName: string
+  email: string
+  settings: {
+    colorTheme: string,
+  }
+  projects: {
+    id1: {
+      name: string
+      createdAt: time
+      updatedAt: time
+      fragments: [1, 2]
+      content: string
+    }
+  }
+  ideas: { // post mvp
+    fragments: [1, 2]
+    content: string
+  }
+  wordLadders: {
+    id1
+    wordPairs: [] // list of ten word pairs
+    fragments: [id2, id2]
+  }
+  streams: { // post mvp
+    id1
+  }
+  fragments: {
+    id1: some fragment
+    fragmentType: string
+  }
+  fragmentType: word ladder, idea, etc // post mvp
+  tags: [strings] melanchooy, joyous // post mvp
+}
+```
+
+// MVP
+user // mock user management with local storage
+projects
+exercises: for now wordLadder
+fragments
+
+// categories
