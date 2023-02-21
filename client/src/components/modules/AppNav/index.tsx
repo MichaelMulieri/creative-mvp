@@ -11,8 +11,14 @@ import {
   CSSObject,
   styled,
 } from "@mui/material";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import DensityMediumIcon from "@mui/icons-material/DensityMedium";
+import WaterIcon from "@mui/icons-material/Water";
+import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { Link } from "react-router-dom";
 import { ChevronLeft as ChevronLeftIcon } from "@mui/icons-material";
+import styles from "./index.module.css";
 
 const drawerWidth = 240;
 
@@ -70,6 +76,17 @@ interface AppNavProps {
   open: boolean;
 }
 
+const navObjects = [
+  { icon: <ConstructionIcon />, label: "Projects", link: "projects" },
+  {
+    icon: <DensityMediumIcon />,
+    label: "Word Ladders",
+    link: "wordladders",
+  },
+  { icon: <WaterIcon />, label: "Streams", link: "streams" },
+  { icon: <EmojiObjectsIcon />, label: "Ideas", link: "ideas" },
+];
+
 const AppNav = ({ handleDrawerClose, open }: AppNavProps) => {
   return (
     <Drawer variant="permanent" open={open}>
@@ -80,60 +97,62 @@ const AppNav = ({ handleDrawerClose, open }: AppNavProps) => {
       </DrawerHeader>
       <Divider />
       <List>
-        {[
-          { label: "Projects", link: "projects" },
-          { label: "Word Ladders", link: "wordladders" },
-          { label: "Streams", link: "streams" },
-          { label: "Ideas", link: "ideas" },
-        ].map((link, index) => (
-          <ListItem key={link.link} disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
+        {Object.values(navObjects).map((value, index) => (
+          <Link className={styles.links} to={value.link}>
+            <ListItem key={value.link} disablePadding sx={{ display: "block" }}>
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                  color: "white",
                 }}
               >
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              </ListItemIcon>
-              <ListItemText sx={{ opacity: open ? 1 : 0 }}>
-                <Link to={link.link}>{link.label}</Link>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  {value.icon}
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  {value.label}
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />
       <List>
         {[{ label: "Settings", link: "settings" }].map((link, index) => (
           <ListItem key={link.link} disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
+            <Link className={styles.links} to={link.link}>
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                  color: "white",
                 }}
               >
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              </ListItemIcon>
-              <ListItemText sx={{ opacity: open ? 1 : 0 }}>
-                <Link to={link.link}>{link.label}</Link>
-              </ListItemText>
-            </ListItemButton>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SettingsIcon />
+                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  {link.label}
+                </ListItemText>
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>

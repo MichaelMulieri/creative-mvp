@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import {
-  Container,
-  CssBaseline,
-  Box,
-  useMediaQuery,
-  Switch,
-  FormGroup,
-  FormControlLabel,
-} from "@mui/material";
+import { Container, CssBaseline, Box, useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import HomePage from "../pages/HomePage";
 import WordLadderPage from "../pages/WordLadderPage";
@@ -48,18 +40,6 @@ function App() {
         <AppShell />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={() => setIsDarkMode(!isDarkMode)}
-                  defaultChecked={isDarkMode}
-                  size="small"
-                />
-              }
-              label={isDarkMode ? "Light mode" : "Dark mode"}
-            />
-          </FormGroup>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<ProjectListPage />} />
@@ -68,7 +48,15 @@ function App() {
             <Route path="/wordladder" element={<WordLadderPage />} />
             <Route path="/streams" element={<StreamsPage />} />
             <Route path="/ideas" element={<IdeasPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            <Route
+              path="/settings"
+              element={
+                <SettingsPage
+                  isDarkMode={isDarkMode}
+                  setIsDarkMode={setIsDarkMode}
+                />
+              }
+            />
           </Routes>
         </Box>
         <footer>footer placeholder</footer>
