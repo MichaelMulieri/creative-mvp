@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Container, CssBaseline, Box, useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import HomePage from "../pages/HomePage";
+import WordLadderCreatePage from "../pages/WordLadderCreatePage";
 import WordLadderPage from "../pages/WordLadderPage";
 import SettingsPage from "../pages/SettingsPage";
 import ProjectListPage from "../pages/ProjectListPage";
@@ -15,6 +16,17 @@ import { DrawerHeader } from "../modules/AppNav";
 import { getAllDocuments, setWordLadder } from "../../firebase";
 
 function App() {
+  const [isGrid, setIsGrid] = useState(true);
+  const [isWordladderGrid, setIsWordLadderGrid] = useState(true);
+
+  const handleGridToggle = () => {
+    setIsGrid((currentIsGrid) => !currentIsGrid);
+  };
+
+  const handleWordladderGridToggle = () => {
+    setIsWordLadderGrid((currentIsWordladderGrid) => !currentIsWordladderGrid);
+  };
+
   const [isDarkMode, setIsDarkMode] = useState(
     useMediaQuery("(prefers-color-scheme: dark)")
   );
@@ -25,13 +37,13 @@ function App() {
     },
   });
 
-  useEffect(() => {
-    getAllDocuments().then((documents) => {
-      console.log("documents", documents);
-    });
+  // useEffect(() => {
+  //   getAllDocuments().then((documents) => {
+  //     console.log("documents", documents);
+  //   });
 
-    setWordLadder();
-  }, []);
+  //   setWordLadder();
+  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -42,10 +54,27 @@ function App() {
           <DrawerHeader />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/projects" element={<ProjectListPage />} />
-            <Route path="/project" element={<ProjectPage />} />
-            <Route path="/wordladders" element={<WordLadderListPage />} />
-            <Route path="/wordladder" element={<WordLadderPage />} />
+            <Route
+              path="/projects"
+              element={
+                <ProjectListPage
+                  isGrid={isGrid}
+                  handleGridToggle={handleGridToggle}
+                />
+              }
+            />
+            <Route path="/projects/:id" element={<ProjectPage />} />
+            <Route
+              path="/wordladders"
+              element={
+                <WordLadderListPage
+                  isWordladderGrid={isWordladderGrid}
+                  handleWordladderGridToggle={handleWordladderGridToggle}
+                />
+              }
+            />
+            <Route path="/wordladders/new" element={<WordLadderCreatePage />} />
+            <Route path="/wordladders/:id" element={<WordLadderPage />} />
             <Route path="/streams" element={<StreamsPage />} />
             <Route path="/ideas" element={<IdeasPage />} />
             <Route

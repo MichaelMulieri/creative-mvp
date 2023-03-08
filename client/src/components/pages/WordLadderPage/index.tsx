@@ -1,36 +1,24 @@
-import { KeyboardEvent, MouseEvent } from "react";
-import { Typography, Box, Button } from "@mui/material";
-import ScrambledWordPairs from "../../modules/ScrambledWordPairs";
-import WordLadderForm from "../../modules/WordLadderForm";
-import useLocalStorageState from "../../../hooks/useLocalStorageState";
+import { mockData } from "../../../mockData";
+import { useParams } from "react-router-dom";
 
 const WordLadderPage = () => {
-  const [scrambledWords, setScrambledWords] = useLocalStorageState(
-    "scrambledWords",
-    []
-  );
+  const { id } = useParams();
 
-  const handleReset = (event: MouseEvent | KeyboardEvent) => {
-    event.preventDefault();
-    setScrambledWords([]);
-  };
+  const wordLadder = mockData?.wordladders[id ?? ""];
 
-  return (
-    <Box>
-      <Typography variant="h3" component="h1">
-        Word Ladder
-      </Typography>
-      {scrambledWords.length === 0 ? (
-        <WordLadderForm setScrambledWords={setScrambledWords} wordAmount={10} />
-      ) : (
-        <>
-          <ScrambledWordPairs theScrambledWords={scrambledWords} />
-          <Button variant="outlined" onClick={handleReset}>
-            Reset
-          </Button>
-        </>
-      )}
-    </Box>
+  return wordLadder ? (
+    <>
+      <h1>{wordLadder.name}</h1>
+      {wordLadder.wordPairs.map((pair) => {
+        return (
+          <p>
+            {pair.noun} {pair.verb}
+          </p>
+        );
+      })}
+    </>
+  ) : (
+    <p>Project not found.</p>
   );
 };
 

@@ -98,7 +98,7 @@ const AppNav = ({ handleDrawerClose, open }: AppNavProps) => {
       <Divider />
       <List>
         {Object.values(navObjects).map((value, index) => (
-          <Link className={styles.links} to={value.link}>
+          <Link key={value.link} className={styles.links} to={value.link}>
             <ListItem key={value.link} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{

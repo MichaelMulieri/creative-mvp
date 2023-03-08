@@ -1,19 +1,40 @@
 import { mockData } from "../../../mockData";
 import ProjectListGrid from "../../modules/ProjectListGrid";
+import ProjectListTable from "../../modules/ProjectListTable/ProjectListTable";
+import Switch from "@mui/material/Switch";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
-const ProjectListPage = () => {
+interface ProjectListPageProps {
+  handleGridToggle: any;
+  isGrid: boolean;
+}
+
+const ProjectListPage = (props: ProjectListPageProps) => {
   const projectList = Object.values(mockData.projects);
+  // const [isGrid, setIsGrid] = useState(true);
+
+  // const handleGridToggle = () => {
+  //   setIsGrid((currentIsGrid) => !currentIsGrid);
+  // };
+
+  const label = props.isGrid ? "Table" : "Grid";
 
   return (
-    <ProjectListGrid projects={projectList}>
-      Project List Page Place Holder
-    </ProjectListGrid>
+    <>
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch onChange={props.handleGridToggle} />}
+          label={label}
+        />
+      </FormGroup>
+      {props.isGrid ? (
+        <ProjectListGrid projects={projectList} />
+      ) : (
+        <ProjectListTable />
+      )}
+    </>
   );
-
-  // return <ProjectListGrid projects={projectsList} />
-
-  // eventually:
-  // return isProjectGird ? <ProjectListGrid projects={projectsList} /> : <ProjectListTable projects={projectsList} />
 };
 
 export default ProjectListPage;

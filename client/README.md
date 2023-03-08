@@ -178,3 +178,11 @@ exercises: for now wordLadder
 fragments
 
 // categories
+
+3/6 todos:
+
+1. create project page
+2. ability to add word pair fragment to project
+3. wiring up local storage
+   3a. fine tuning data model
+   3b. adding getting and setting to local storage
