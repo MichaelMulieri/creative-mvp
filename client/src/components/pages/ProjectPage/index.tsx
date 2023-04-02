@@ -8,7 +8,7 @@ const ProjectPage = () => {
 
   return project ? (
     <>
-      <h1>{project.name}</h1>
+      <h2>{project.name}</h2>
       <p>{project.description}</p>
     </>
   ) : (

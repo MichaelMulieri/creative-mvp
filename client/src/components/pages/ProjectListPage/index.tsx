@@ -1,9 +1,10 @@
-import { mockData } from "../../../mockData";
 import ProjectListGrid from "../../modules/ProjectListGrid";
 import ProjectListTable from "../../modules/ProjectListTable/ProjectListTable";
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { useEffect, useState } from "react";
+import { fetchProjects } from "../../../http";
 
 interface ProjectListPageProps {
   handleGridToggle: any;
@@ -11,16 +12,23 @@ interface ProjectListPageProps {
 }
 
 const ProjectListPage = (props: ProjectListPageProps) => {
-  const projectList = Object.values(mockData.projects);
-  // const [isGrid, setIsGrid] = useState(true);
+  const [projects, setProjects] = useState<any>(null);
 
-  // const handleGridToggle = () => {
-  //   setIsGrid((currentIsGrid) => !currentIsGrid);
-  // };
+  useEffect(() => {
+    const getProjects = async () => {
+      const projects = await fetchProjects();
+
+      setProjects(Object.values(projects));
+    };
+
+    getProjects();
+  }, []);
 
   const label = props.isGrid ? "Table" : "Grid";
 
-  return (
+  return !projects ? (
+    <p>"Projects Loading"</p>
+  ) : (
     <>
       <FormGroup>
         <FormControlLabel
@@ -29,9 +37,9 @@ const ProjectListPage = (props: ProjectListPageProps) => {
         />
       </FormGroup>
       {props.isGrid ? (
-        <ProjectListGrid projects={projectList} />
+        <ProjectListGrid projects={projects} />
       ) : (
-        <ProjectListTable />
+        <ProjectListTable projects={projects} />
       )}
     </>
   );

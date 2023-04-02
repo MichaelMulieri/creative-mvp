@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import WordLadderCreatePage from "../pages/WordLadderCreatePage";
 import WordLadderPage from "../pages/WordLadderPage";
 import SettingsPage from "../pages/SettingsPage";
+import ProjectPageNew from "../pages/ProjectPageNew";
 import ProjectListPage from "../pages/ProjectListPage";
 import ProjectPage from "../pages/ProjectPage";
 import StreamsPage from "../pages/StreamsPage";
@@ -37,14 +38,6 @@ function App() {
     },
   });
 
-  // useEffect(() => {
-  //   getAllDocuments().then((documents) => {
-  //     console.log("documents", documents);
-  //   });
-
-  //   setWordLadder();
-  // }, []);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -63,6 +56,7 @@ function App() {
                 />
               }
             />
+            <Route path="/projects/new" element={<ProjectPageNew />} />
             <Route path="/projects/:id" element={<ProjectPage />} />
             <Route
               path="/wordladders"

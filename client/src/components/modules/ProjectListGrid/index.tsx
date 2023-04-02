@@ -9,9 +9,10 @@ const ProjectListGrid = ({ projects, children }: any) => {
     <>
       {children}
       <div className={styles.gridContainer}>
-        {projects.map((project: any) => (
-          <ProjectGridCard key={project.id} project={project} />
-        ))}
+        {projects.map((project: any) => {
+          console.log(project.id);
+          return <ProjectGridCard key={project.id} project={project} />;
+        })}
       </div>
     </>
   );

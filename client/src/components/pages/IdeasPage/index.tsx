@@ -1,5 +1,5 @@
 const IdeasPage = () => {
-  return <h1>Ideas Page Place Holder</h1>;
+  return <h2>Ideas Page Place Holder</h2>;
 };
 
 export default IdeasPage;

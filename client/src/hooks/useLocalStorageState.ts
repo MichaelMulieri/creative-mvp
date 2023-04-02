@@ -1,16 +1,16 @@
-import {useState, useEffect} from 'react'
-import { loadLocalData, saveLocalData } from '../utils';
+import { useState, useEffect } from "react";
+import { loadLocalData, saveLocalData } from "../utils";
 
-import type { LocalStorageKey} from '../types';
+import type { LocalStorageKey } from "../types";
 
 const useLocalStorageState = (key: LocalStorageKey, defaultValue: any) => {
-    const [state, setState] = useState(loadLocalData(key) || defaultValue);   
-    
-      useEffect(() => {
-        saveLocalData(key, state);
-      }, [state, key]);
+  const [state, setState] = useState(loadLocalData(key) || defaultValue);
 
-      return [state, setState]
-}
+  useEffect(() => {
+    saveLocalData(key, state);
+  }, [state, key]);
 
-export default useLocalStorageState
+  return [state, setState];
+};
+
+export default useLocalStorageState;

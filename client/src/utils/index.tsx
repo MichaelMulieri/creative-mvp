@@ -15,11 +15,14 @@ export const scrambleMap = (
   });
 };
 
-export const loadLocalData = (key: LocalStorageKey): LocalStorageItem => {
+export const loadLocalData = (
+  key: LocalStorageKey,
+  defaultData = {}
+): LocalStorageItem => {
   const savedData: LocalStorageData = JSON.parse(
     localStorage.getItem("create_mvp_1234") || "{}"
   );
-  return savedData[key];
+  return savedData?.[key] || defaultData;
 };
 
 export const saveLocalData = (key: LocalStorageKey, data: LocalStorageItem) => {

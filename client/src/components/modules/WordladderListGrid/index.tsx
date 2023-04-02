@@ -2,7 +2,6 @@ import WordladderGridCard from "../WordladderGridCard";
 import styles from "./WordladderListGrid.module.css";
 
 const WordladderListGrid = ({ wordladders, children }: any) => {
-  console.log(wordladders);
   return (
     <>
       {children}

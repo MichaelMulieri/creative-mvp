@@ -8,10 +8,10 @@ const WordLadderPage = () => {
 
   return wordLadder ? (
     <>
-      <h1>{wordLadder.name}</h1>
-      {wordLadder.wordPairs.map((pair) => {
+      <h2>{wordLadder.name}</h2>
+      {wordLadder.wordPairs.map((pair, index) => {
         return (
-          <p>
+          <p key={index}>
             {pair.noun} {pair.verb}
           </p>
         );

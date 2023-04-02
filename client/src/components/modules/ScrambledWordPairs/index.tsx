@@ -13,7 +13,7 @@ const ScrambledWordPairs = ({ theScrambledWords }: ScrambledWordPairsProps) => {
         Scrambled Word Pairs
       </Typography>
       {theScrambledWords.map((wordPair, index) => (
-        <Card sx={{ my: "1rem", padding: "1rem" }}>
+        <Card sx={{ my: "1rem", padding: "1rem" }} key={index}>
           <TextField
             variant="filled"
             size="small"

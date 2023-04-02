@@ -1,4 +1,3 @@
-import { mockData } from "../../../mockData";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,9 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 
-const rows = Object.values(mockData.projects);
-
-const ProjectListTable = () => {
+const ProjectListTable = ({ projects }: any) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -23,8 +20,8 @@ const ProjectListTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Link to={row.id}>
+          {projects.map((row: any) => (
+            <Link to={row.id} key={row.id}>
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
