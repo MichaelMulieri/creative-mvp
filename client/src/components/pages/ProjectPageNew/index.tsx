@@ -1,13 +1,15 @@
 import { TextField, Button } from "@mui/material";
 import { useState, FormEvent } from "react";
 import { addProject } from "../../../http";
+import { useNavigate } from "react-router-dom";
 
 const ProjectPageNew = () => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [descValidationError, setDescValidationError] = useState(false);
+  const navigate = useNavigate();
 
-  const handleCreateProject = (e: FormEvent) => {
+  const handleCreateProject = async (e: FormEvent) => {
     e.preventDefault();
 
     const project = {
@@ -17,7 +19,15 @@ const ProjectPageNew = () => {
       id: Date.now().toString(),
     };
 
-    addProject(project);
+    const response: any = await addProject(project);
+
+    if (response.error === true) {
+      alert("there was an error try again");
+
+      return;
+    }
+
+    navigate("/projects");
   };
 
   const handleSetDesc = (e: any) => {

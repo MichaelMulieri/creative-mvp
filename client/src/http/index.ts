@@ -9,6 +9,12 @@ export const addProject = async (project: any) => {
   projects[project.id] = project;
 
   saveLocalData("mockHttpProjects", projects);
+
+  return { success: true, error: false };
 };
 
-export const fetchProject = () => {};
+export const fetchProject = async (id: string) => {
+  const projects = loadLocalData("mockHttpProjects");
+
+  return projects[id];
+};

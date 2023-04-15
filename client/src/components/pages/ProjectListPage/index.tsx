@@ -5,6 +5,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useEffect, useState } from "react";
 import { fetchProjects } from "../../../http";
+import { Link } from "react-router-dom";
 
 interface ProjectListPageProps {
   handleGridToggle: any;
@@ -30,6 +31,7 @@ const ProjectListPage = (props: ProjectListPageProps) => {
     <p>"Projects Loading"</p>
   ) : (
     <>
+      <Link to="new">Create new project</Link>
       <FormGroup>
         <FormControlLabel
           control={<Switch onChange={props.handleGridToggle} />}
