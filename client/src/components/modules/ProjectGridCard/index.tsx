@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 const ProjectGridCard = ({ project }: any) => {
-  console.log("id", project.id);
   return (
     <Link to={project.id.toString()}>
       <Card variant="outlined" sx={{ minWidth: 200 }}>

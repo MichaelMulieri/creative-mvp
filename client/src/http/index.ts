@@ -18,3 +18,20 @@ export const fetchProject = async (id: string) => {
 
   return projects[id];
 };
+
+export const saveProject = async (project: any) => {
+  const projects = loadLocalData("mockHttpProjects");
+  projects[project.id] = project;
+
+  saveLocalData("mockHttpProjects", projects);
+
+  return { success: true, error: false };
+};
+
+export const fetchWordLadders = async () => {};
+
+export const fetchWordLadder = async () => {};
+
+export const addWordLadder = async () => {};
+
+export const saveWordLadder = async () => {};
