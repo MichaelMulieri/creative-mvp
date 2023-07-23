@@ -81,7 +81,7 @@ const navObjects = [
   {
     icon: <DensityMediumIcon />,
     label: "Word Ladders",
-    link: "wordladders",
+    link: "wordladder",
   },
   { icon: <WaterIcon />, label: "Streams", link: "streams" },
   { icon: <EmojiObjectsIcon />, label: "Ideas", link: "ideas" },

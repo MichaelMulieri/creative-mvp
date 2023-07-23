@@ -3,7 +3,7 @@ import { useState, FormEvent } from "react";
 import { addProject } from "../../../http";
 import { useNavigate } from "react-router-dom";
 
-const ProjectPageNew = () => {
+const ProjectPageNew = ({ scrambledWords }: any) => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [descValidationError, setDescValidationError] = useState(false);
@@ -14,6 +14,7 @@ const ProjectPageNew = () => {
 
     const project = {
       name,
+      ...scrambledWords,
       description: desc,
       createdAt: Date.now(),
       id: Date.now().toString(),
@@ -26,7 +27,7 @@ const ProjectPageNew = () => {
 
       return;
     }
-
+    console.log(project);
     navigate("/projects");
   };
 

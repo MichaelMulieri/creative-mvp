@@ -12,20 +12,35 @@ interface ProjectListPageProps {
   isGrid: boolean;
 }
 
-const ProjectListPage = (props: ProjectListPageProps) => {
+const ProjectListPage = () => {
   const [projects, setProjects] = useState<any>(null);
+  const [isGrid, setIsGrid] = useState(true);
 
   useEffect(() => {
     const getProjects = async () => {
-      const projects = await fetchProjects();
+      const projectsData = await fetchProjects();
 
-      setProjects(Object.values(projects));
+      console.log(projectsData);
+
+      setProjects(Object.values(projectsData || {}));
     };
 
     getProjects();
   }, []);
 
-  const label = props.isGrid ? "Table" : "Grid";
+  const handleGridToggle = () => {
+    setIsGrid((currentIsGrid) => !currentIsGrid);
+  };
+
+  // the reason we make a function and then call it in the useEffect above is because you can't
+  // make the function passed to useEffect async
+  // useEffect(async () => {
+  //     const projects = await fetchProjects();
+
+  //     setProjects(Object.values(projects));
+  // }, []);
+
+  const label = isGrid ? "Grid" : "Table";
 
   return !projects ? (
     <p>"Projects Loading"</p>
@@ -34,11 +49,11 @@ const ProjectListPage = (props: ProjectListPageProps) => {
       <Link to="new">Create new project</Link>
       <FormGroup>
         <FormControlLabel
-          control={<Switch onChange={props.handleGridToggle} />}
+          control={<Switch onChange={handleGridToggle} />}
           label={label}
         />
       </FormGroup>
-      {props.isGrid ? (
+      {isGrid ? (
         <ProjectListGrid projects={projects} />
       ) : (
         <ProjectListTable projects={projects} />

@@ -18,7 +18,7 @@ const WordLadderPage = () => {
       })}
     </>
   ) : (
-    <p>Project not found.</p>
+    <p>Word ladder not found.</p>
   );
 };
 

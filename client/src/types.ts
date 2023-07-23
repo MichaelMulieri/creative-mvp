@@ -5,7 +5,9 @@ export type LocalStorageKey =
   | "verbs"
   | "nouns"
   | "scrambledWords"
-  | "mockHttpProjects";
+  | "mockHttpProjects"
+  | "mockWordLadders"
+  | "mockIdeas";
 
 export type LocalStorageItem = Words | ScrambledWords | any;
 export interface LocalStorageData {
@@ -13,4 +15,6 @@ export interface LocalStorageData {
   nouns: Words;
   scrambledWords: ScrambledWords;
   mockHttpProjects: any;
+  mockWordLadders: any;
+  mockIdeas: any;
 }

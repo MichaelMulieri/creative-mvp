@@ -6,9 +6,6 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
-// import * as dotenv from "dotenv";
-
-// dotenv.config();
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBivSdtAPzumkYvh_5uqmhp2nHSrDdaUk",

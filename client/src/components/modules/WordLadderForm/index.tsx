@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { FormEvent, KeyboardEvent, MouseEvent } from "react";
 import { Box, Stack, Button } from "@mui/material";
 import WordColumn from "../WordColumn";
